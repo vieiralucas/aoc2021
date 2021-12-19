@@ -20,7 +20,7 @@ fn day1_part1() {
         }
     }
 
-    println!("Part 1: {}", result);
+    println!("Day 1, part 1: {}", result);
 }
 
 fn day1_part2() {
@@ -44,10 +44,38 @@ fn day1_part2() {
         }
     }
 
-    println!("Part 2: {}", result);
+    println!("Day 1, part 2: {}", result);
+}
+
+fn day2_part1() {
+    let mut hor = 0;
+    let mut depth = 0;
+
+    for line in fs::read_to_string("inputs/day2/input.txt")
+        .expect("Failed to read input")
+        .lines()
+    {
+        let mut words = line.split(" ");
+        let dir = words.next().expect("Direction not found in line");
+        let amount: u32 = words
+            .next()
+            .map(|w| w.parse().expect("Failed to parse amount to u32"))
+            .expect("Amount not found in line");
+
+        match dir {
+            "forward" => hor += amount,
+            "up" => depth -= amount,
+            "down" => depth += amount,
+            _ => unreachable!()
+        }
+    }
+
+    println!("Day 2, part 1: {}", hor * depth);
 }
 
 fn main() {
     day1_part1();
     day1_part2();
+
+    day2_part1();
 }
