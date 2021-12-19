@@ -1,10 +1,10 @@
 use std::fs;
 
 fn day1_part1() {
-    let input: Vec<u32> = fs::read_to_string("inputs/day1/input.txt")
+    let input: Vec<u64> = fs::read_to_string("inputs/day1/input.txt")
         .expect("Failed to read input")
         .lines()
-        .map(|l| l.parse().expect("Failed to convert line to u32"))
+        .map(|l| l.parse().expect("Failed to convert line to u64"))
         .collect();
 
     let mut result = 0;
@@ -24,10 +24,10 @@ fn day1_part1() {
 }
 
 fn day1_part2() {
-    let input: Vec<u32> = fs::read_to_string("inputs/day1/input.txt")
+    let input: Vec<u64> = fs::read_to_string("inputs/day1/input.txt")
         .expect("Failed to read input")
         .lines()
-        .map(|l| l.parse().expect("Failed to convert line to u32"))
+        .map(|l| l.parse().expect("Failed to convert line to u64"))
         .collect();
 
     let mut result = 0;
@@ -36,8 +36,8 @@ fn day1_part2() {
             continue;
         }
 
-        let a: u32 = input[i - 3..i].iter().sum();
-        let b: u32 = input[i - 2..i + 1].iter().sum();
+        let a: u64 = input[i - 3..i].iter().sum();
+        let b: u64 = input[i - 2..i + 1].iter().sum();
 
         if a < b {
             result += 1;
@@ -57,20 +57,50 @@ fn day2_part1() {
     {
         let mut words = line.split(" ");
         let dir = words.next().expect("Direction not found in line");
-        let amount: u32 = words
+        let amount: u64 = words
             .next()
-            .map(|w| w.parse().expect("Failed to parse amount to u32"))
+            .map(|w| w.parse().expect("Failed to parse amount to u64"))
             .expect("Amount not found in line");
 
         match dir {
             "forward" => hor += amount,
             "up" => depth -= amount,
             "down" => depth += amount,
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
 
     println!("Day 2, part 1: {}", hor * depth);
+}
+
+fn day2_part2() {
+    let mut hor = 0;
+    let mut depth = 0;
+    let mut aim = 0;
+
+    for line in fs::read_to_string("inputs/day2/input.txt")
+        .expect("Failed to read input")
+        .lines()
+    {
+        let mut words = line.split(" ");
+        let dir = words.next().expect("Direction not found in line");
+        let amount: u64 = words
+            .next()
+            .map(|w| w.parse().expect("Failed to parse amount to u64"))
+            .expect("Amount not found in line");
+
+        match dir {
+            "forward" => {
+                hor += amount;
+                depth += amount * aim;
+            }
+            "up" => aim -= amount,
+            "down" => aim += amount,
+            _ => unreachable!(),
+        }
+    }
+
+    println!("Day 2, part 2: {}", hor * depth);
 }
 
 fn main() {
@@ -78,4 +108,5 @@ fn main() {
     day1_part2();
 
     day2_part1();
+    day2_part2();
 }
