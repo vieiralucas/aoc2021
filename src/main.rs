@@ -103,10 +103,57 @@ fn day2_part2() {
     println!("Day 2, part 2: {}", hor * depth);
 }
 
+fn day3_part1() {
+    let mut ocurrences = vec![];
+    let mut line_count = 0;
+
+    for line in fs::read_to_string("inputs/day3/input.txt")
+        .expect("Failed to read input")
+        .lines()
+    {
+        line_count += 1;
+        for (i, c) in line.chars().enumerate() {
+            if i >= ocurrences.len() {
+                ocurrences.push(0);
+            }
+
+            if c == '1' {
+                ocurrences[i] += 1;
+            }
+        }
+    }
+
+    let mut gamma_bits = vec!['0'; ocurrences.len()];
+    let mut epsilon_bits = vec!['0'; ocurrences.len()];
+
+    for i in 0..ocurrences.len() {
+        if ocurrences[i] > line_count / 2 {
+            gamma_bits[i] = '1';
+        } else {
+            epsilon_bits[i] = '1';
+        }
+    }
+
+    let gamma = u32::from_str_radix(&String::from_iter(gamma_bits), 2)
+        .expect("Failed to parse bits gamma_bits");
+    let epsilon = u32::from_str_radix(&String::from_iter(epsilon_bits), 2)
+        .expect("Failed to parse bits epsilon_bits");
+
+    println!("Day 3, part 1: {}", gamma * epsilon);
+}
+
+fn day3_part2() {}
+
 fn main() {
     day1_part1();
     day1_part2();
+    println!("-------------------------");
 
     day2_part1();
     day2_part2();
+    println!("-------------------------");
+
+    day3_part1();
+    day3_part2();
+    println!("-------------------------");
 }
