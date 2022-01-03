@@ -1,3 +1,4 @@
+use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::ops::{Add, AddAssign};
 use std::{num::ParseIntError, str::FromStr};
@@ -37,7 +38,7 @@ impl FromStr for Point {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let results: Vec<Result<isize, Self::Err>> =
-            s.split(",").map(|s| s.parse::<isize>()).collect();
+            s.split(',').map(|s| s.parse()).collect();
         let numbers: Result<Vec<isize>, Self::Err> = results.into_iter().collect();
 
         numbers.map(|ns| Point::new(ns[0], ns[1]))
@@ -52,12 +53,10 @@ struct Line {
 }
 
 fn get_dir(a: isize, b: isize) -> isize {
-    if a == b {
-        0
-    } else if a > b {
-        -1
-    } else {
-        1
+    match a.cmp(&b) {
+        Ordering::Greater => -1,
+        Ordering::Less => 1,
+        Ordering::Equal => 0,
     }
 }
 
@@ -116,7 +115,7 @@ impl FromStr for Line {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let results: Vec<Result<Point, Self::Err>> =
-            s.split(" -> ").map(|s| s.parse::<Point>()).collect();
+            s.split(" -> ").map(|s| s.parse()).collect();
         let numbers: Result<Vec<Point>, Self::Err> = results.into_iter().collect();
 
         numbers.map(|ns| Line::new(ns[0], ns[1]))
@@ -131,7 +130,7 @@ pub fn part1() {
 
     let mut board: HashMap<Point, isize> = HashMap::new();
 
-    for line in lines.iter(){
+    for line in lines.iter() {
         if line.is_diagonal() {
             continue;
         }
@@ -155,7 +154,7 @@ pub fn part2() {
 
     let mut board: HashMap<Point, isize> = HashMap::new();
 
-    for line in lines.iter(){
+    for line in lines.iter() {
         for point in line.into_iter() {
             board.entry(point).and_modify(|e| *e += 1).or_insert(1);
         }

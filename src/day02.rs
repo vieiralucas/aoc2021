@@ -8,7 +8,7 @@ pub fn part1() {
         .expect("Failed to read input")
         .lines()
     {
-        let mut words = line.split(" ");
+        let mut words = line.split(' ');
         let dir = words.next().expect("Direction not found in line");
         let amount: u64 = words
             .next()
@@ -35,7 +35,7 @@ pub fn part2() {
         .expect("Failed to read input")
         .lines()
     {
-        let mut words = line.split(" ");
+        let mut words = line.split(' ');
         let dir = words.next().expect("Direction not found in line");
         let amount: u64 = words
             .next()

@@ -70,10 +70,8 @@ pub fn part2() {
                 if bits[i] == '0' {
                     next_bits.push(bits.clone());
                 }
-            } else {
-                if bits[i] == '1' {
-                    next_bits.push(bits.clone());
-                }
+            } else if bits[i] == '1' {
+                next_bits.push(bits.clone());
             }
         }
 
@@ -103,10 +101,8 @@ pub fn part2() {
                 if bits[i] == '0' {
                     next_bits.push(bits.clone());
                 }
-            } else {
-                if bits[i] == '1' {
-                    next_bits.push(bits.clone());
-                }
+            } else if bits[i] == '1' {
+                next_bits.push(bits.clone());
             }
         }
 

@@ -89,7 +89,7 @@ fn parse_data(s: &str) -> (Vec<Board>, Vec<u64>) {
     let numbers: Vec<u64> = lines
         .next()
         .expect("Failed to parse numbers line")
-        .split(",")
+        .split(',')
         .map(|s| s.parse().expect("Failed to parse u64"))
         .collect();
 
