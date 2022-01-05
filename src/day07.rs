@@ -34,7 +34,7 @@ pub fn part2() {
         for crab in &crabs {
             let distance = (pos - crab).abs();
 
-            let crab_fuel = (distance * (1  + distance)) / 2;
+            let crab_fuel = (distance * (1 + distance)) / 2;
 
             pos_fuel += crab_fuel;
         }

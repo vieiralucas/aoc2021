@@ -37,8 +37,7 @@ impl FromStr for Point {
     type Err = ParseIntError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let results: Vec<Result<isize, Self::Err>> =
-            s.split(',').map(|s| s.parse()).collect();
+        let results: Vec<Result<isize, Self::Err>> = s.split(',').map(|s| s.parse()).collect();
         let numbers: Result<Vec<isize>, Self::Err> = results.into_iter().collect();
 
         numbers.map(|ns| Point::new(ns[0], ns[1]))
@@ -114,8 +113,7 @@ impl FromStr for Line {
     type Err = ParseIntError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let results: Vec<Result<Point, Self::Err>> =
-            s.split(" -> ").map(|s| s.parse()).collect();
+        let results: Vec<Result<Point, Self::Err>> = s.split(" -> ").map(|s| s.parse()).collect();
         let numbers: Result<Vec<Point>, Self::Err> = results.into_iter().collect();
 
         numbers.map(|ns| Line::new(ns[0], ns[1]))
