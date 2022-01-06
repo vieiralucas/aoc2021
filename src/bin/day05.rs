@@ -120,8 +120,8 @@ impl FromStr for Line {
     }
 }
 
-pub fn part1() {
-    let lines: Vec<Line> = include_str!("../inputs/day5/input.txt")
+fn part1() {
+    let lines: Vec<Line> = include_str!("../../inputs/day5/input.txt")
         .lines()
         .map(|line| line.parse().expect("Failed to parse line"))
         .collect();
@@ -144,8 +144,8 @@ pub fn part1() {
     );
 }
 
-pub fn part2() {
-    let lines: Vec<Line> = include_str!("../inputs/day5/input.txt")
+fn part2() {
+    let lines: Vec<Line> = include_str!("../../inputs/day5/input.txt")
         .lines()
         .map(|line| line.parse().expect("Failed to parse line"))
         .collect();
@@ -162,4 +162,9 @@ pub fn part2() {
         "Day 5, part 2: {}",
         board.values().filter(|v| **v > 1).count()
     );
+}
+
+fn main() {
+    part1();
+    part2();
 }

@@ -1,5 +1,5 @@
 fn solve(days: usize) -> usize {
-    let mut fishes: [usize; 9] = include_str!("../inputs/day6/input.txt")
+    let mut fishes: [usize; 9] = include_str!("../../inputs/day6/input.txt")
         .trim()
         .split(',')
         .map(|str| str.parse().expect("a usize"))
@@ -19,10 +19,15 @@ fn solve(days: usize) -> usize {
     fishes.iter().sum()
 }
 
-pub fn part1() {
+fn part1() {
     println!("Day 6, part 1: {}", solve(80));
 }
 
-pub fn part2() {
+fn part2() {
     println!("Day 6, part 2: {}", solve(256));
+}
+
+fn main() {
+    part1();
+    part2();
 }

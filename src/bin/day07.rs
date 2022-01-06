@@ -1,5 +1,5 @@
-pub fn part1() {
-    let mut crabs: Vec<isize> = include_str!("../inputs/day7/input.txt")
+fn part1() {
+    let mut crabs: Vec<isize> = include_str!("../../inputs/day7/input.txt")
         .trim()
         .split(',')
         .map(|str| str.parse().expect("a usize"))
@@ -14,8 +14,8 @@ pub fn part1() {
     println!("Day 7, part 1: {}", fuel);
 }
 
-pub fn part2() {
-    let crabs: Vec<i64> = include_str!("../inputs/day7/input.txt")
+fn part2() {
+    let crabs: Vec<i64> = include_str!("../../inputs/day7/input.txt")
         .trim()
         .split(',')
         .map(|str| str.parse().expect("a usize"))
@@ -43,4 +43,9 @@ pub fn part2() {
     }
 
     println!("Day 7, part 2: {}", fuel);
+}
+
+fn main() {
+    part1();
+    part2();
 }

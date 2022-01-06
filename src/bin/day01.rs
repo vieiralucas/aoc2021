@@ -1,6 +1,6 @@
 use std::fs;
 
-pub fn part1() {
+fn part1() {
     let input: Vec<u64> = fs::read_to_string("inputs/day1/input.txt")
         .expect("Failed to read input")
         .lines()
@@ -23,7 +23,7 @@ pub fn part1() {
     println!("Day 1, part 1: {}", result);
 }
 
-pub fn part2() {
+fn part2() {
     let input: Vec<u64> = fs::read_to_string("inputs/day1/input.txt")
         .expect("Failed to read input")
         .lines()
@@ -45,4 +45,9 @@ pub fn part2() {
     }
 
     println!("Day 1, part 2: {}", result);
+}
+
+fn main() {
+    part1();
+    part2();
 }

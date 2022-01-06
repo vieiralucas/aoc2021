@@ -1,6 +1,6 @@
 use std::fs;
 
-pub fn part1() {
+fn part1() {
     let mut ocurrences = vec![];
     let mut line_count = 0;
 
@@ -39,7 +39,7 @@ pub fn part1() {
     println!("Day 3, part 1: {}", gamma * epsilon);
 }
 
-pub fn part2() {
+fn part2() {
     let mut bits: Vec<Vec<char>> = vec![];
 
     for line in fs::read_to_string("inputs/day3/input.txt")
@@ -120,4 +120,9 @@ pub fn part2() {
         .expect("Failed to parse bits co2_bits");
 
     println!("Day 3, part 2: {}", oxygen * co2);
+}
+
+fn main() {
+    part1();
+    part2();
 }

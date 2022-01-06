@@ -119,8 +119,8 @@ fn parse_data(s: &str) -> (Vec<Board>, Vec<u64>) {
     (boards, numbers)
 }
 
-pub fn part1() {
-    let (mut boards, numbers) = parse_data(include_str!("../inputs/day4/input.txt"));
+fn part1() {
+    let (mut boards, numbers) = parse_data(include_str!("../../inputs/day4/input.txt"));
 
     let mut final_score = 0;
     'outer: for n in numbers {
@@ -136,8 +136,8 @@ pub fn part1() {
     println!("Day 4, part 1: {}", final_score);
 }
 
-pub fn part2() {
-    let (mut boards, numbers) = parse_data(include_str!("../inputs/day4/input.txt"));
+fn part2() {
+    let (mut boards, numbers) = parse_data(include_str!("../../inputs/day4/input.txt"));
 
     let mut last_winner = 0;
     for n in numbers {
@@ -157,4 +157,9 @@ pub fn part2() {
         "Day 4, part 2: {}",
         boards[last_winner].score() * boards[last_winner].win_value.unwrap()
     );
+}
+
+fn main() {
+    part1();
+    part2();
 }

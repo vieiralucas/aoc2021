@@ -1,6 +1,6 @@
 use std::fs;
 
-pub fn part1() {
+fn part1() {
     let mut hor = 0;
     let mut depth = 0;
 
@@ -26,7 +26,7 @@ pub fn part1() {
     println!("Day 2, part 1: {}", hor * depth);
 }
 
-pub fn part2() {
+fn part2() {
     let mut hor = 0;
     let mut depth = 0;
     let mut aim = 0;
@@ -54,4 +54,9 @@ pub fn part2() {
     }
 
     println!("Day 2, part 2: {}", hor * depth);
+}
+
+fn main() {
+    part1();
+    part2();
 }

@@ -95,8 +95,8 @@ impl FromStr for Input {
     }
 }
 
-pub fn part1() {
-    let patterns = include_str!("../inputs/day8/sample.txt")
+fn part1() {
+    let patterns = include_str!("../../inputs/day8/sample.txt")
         .trim()
         .lines()
         .map(|line| line.parse::<Input>().expect("line to be parsed as input"))
@@ -105,8 +105,13 @@ pub fn part1() {
     println!("Day 8, part 1: {:#?}", patterns);
 }
 
-pub fn part2() {
-    let input = include_str!("../inputs/day8/sample.txt");
+fn part2() {
+    let input = include_str!("../../inputs/day8/sample.txt");
 
     println!("Day 8, part 2: {}", 0);
+}
+
+fn main() {
+    part1();
+    part2();
 }

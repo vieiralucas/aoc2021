@@ -3,5 +3,8 @@
 ## Quick start
 
 ```sh
-cargo run
+cargo run --bin day01
+cargo run --bin day02
+
+# and so on
 ```
