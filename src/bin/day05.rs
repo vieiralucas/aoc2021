@@ -1,7 +1,8 @@
+use anyhow::{Context, Error, Result};
 use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::ops::{Add, AddAssign};
-use std::{num::ParseIntError, str::FromStr};
+use std::str::FromStr;
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
 struct Point {
@@ -34,13 +35,15 @@ impl Point {
 }
 
 impl FromStr for Point {
-    type Err = ParseIntError;
+    type Err = Error;
 
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let results: Vec<Result<isize, Self::Err>> = s.split(',').map(|s| s.parse()).collect();
-        let numbers: Result<Vec<isize>, Self::Err> = results.into_iter().collect();
+    fn from_str(s: &str) -> Result<Self> {
+        let mut numbers = s.split(',').flat_map(str::parse);
 
-        numbers.map(|ns| Point::new(ns[0], ns[1]))
+        Ok(Point::new(
+            numbers.next().context("missing x")?,
+            numbers.next().context("missing y")?,
+        ))
     }
 }
 
@@ -110,13 +113,15 @@ impl Iterator for LineIterator {
 }
 
 impl FromStr for Line {
-    type Err = ParseIntError;
+    type Err = Error;
 
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let results: Vec<Result<Point, Self::Err>> = s.split(" -> ").map(|s| s.parse()).collect();
-        let numbers: Result<Vec<Point>, Self::Err> = results.into_iter().collect();
+    fn from_str(s: &str) -> Result<Self> {
+        let mut points = s.split(',').flat_map(str::parse);
 
-        numbers.map(|ns| Line::new(ns[0], ns[1]))
+        Ok(Line::new(
+            points.next().context("missing p1")?,
+            points.next().context("missing p2")?,
+        ))
     }
 }
 
